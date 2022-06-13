@@ -50,7 +50,7 @@ def main():
 
     while frameCount < SETTING.duration * SETTING.frameRate:
         frame = camera.read()
-        frame = frame[CROP_Y_PADDING: SETTING.resolution[1] - CROP_Y_PADDING, CROP_X_PADDING: SETTING.resolution[0] - CROP_X_PADDING]
+        frame = frame[CROP_PADDING[1]: SETTING.resolution[1] - CROP_PADDING[1], CROP_PADDING[0]: SETTING.resolution[0] - CROP_PADDING[0]]
         writer.write(frame)
         frameCount += 1
         if platform.system() == OS.windows:

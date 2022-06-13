@@ -14,5 +14,4 @@ class OS:
     raspbian = 'Linux'
 
 CAPTURE_DELAY = int(1000 / SETTING.frameRate * 0.8)  # multiplied by a correction factor
-CROP_X_PADDING = (SETTING.resolution[0] - SETTING.croppedResolution[0]) // 2
-CROP_Y_PADDING = (SETTING.resolution[1] - SETTING.croppedResolution[1]) // 2
+CROP_PADDING = ((SETTING.resolution[0] - SETTING.croppedResolution[0]) // 2, (SETTING.resolution[1] - SETTING.croppedResolution[1]) // 2)
