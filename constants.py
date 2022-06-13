@@ -2,6 +2,8 @@ CAPTURE_SOURCE = 0
 FRAME_WIDTH_RANGE = (400, 2000)
 FRAME_WIDTH_DELTA = 200
 
-# valid resolutions are [(640.0, 480.0), (1280.0, 720.0), (1920.0, 1080.0)]
-CAPTURE_RESOLUTION = (1280, 720)
+# valid resolutions are:
+# USB camera: [(640, 480), (1280, 720), (1920, 1080)]
+# Pi camera: (640, 480)
+CAPTURE_RESOLUTION = (640, 480)
 FPS = 10
