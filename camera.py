@@ -11,16 +11,16 @@ class Camera():
         if platform.system() == OS.windows:
             self.camera = cv2.VideoCapture(CAPTURE_SOURCE)
             assert self.camera.isOpened(), f'failed to open capture {CAPTURE_SOURCE}'
-            self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, RESOLUTION[0])
-            self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, RESOLUTION[1])
-            self.camera.set(cv2.CAP_PROP_FPS, FRAME_RATE)
+            self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, SETTING.resolution[0])
+            self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, SETTING.resolution[1])
+            self.camera.set(cv2.CAP_PROP_FPS, SETTING.frameRate)
         elif platform.system() == OS.raspbian:
             import picamera
             import picamera.array
             self.camera = picamera.PiCamera()
-            self.camera.resolution = RESOLUTION
-            self.camera.framerate = FRAME_RATE
-            self.capture = picamera.array.PiRGBArray(self.camera, size=RESOLUTION)
+            self.camera.resolution = SETTING.resolution
+            self.camera.framerate = SETTING.frameRate
+            self.capture = picamera.array.PiRGBArray(self.camera, size=SETTING.resolution)
         else:
             assert False, f'{platform.system()} operating system is not supported'
         time.sleep(0.2)  # allow camera to warm up
@@ -44,7 +44,7 @@ class Camera():
 
 def main():
     camera = Camera()
-    writer = cv2.VideoWriter('video.avi', cv2.VideoWriter_fourcc(*'MJPG'), FRAME_RATE, RESOLUTION)
+    writer = cv2.VideoWriter('video.avi', cv2.VideoWriter_fourcc(*'MJPG'), SETTING.frameRate, SETTING.resolution)
     fromTime = datetime.datetime.now()
     frameCount = 0
 
@@ -52,7 +52,7 @@ def main():
         frame = camera.read()
         writer.write(frame)
         frameCount += 1
-        cv2.waitKey(1000 // FRAME_RATE)
+        cv2.waitKey(1000 // SETTING.frameRate)
     
     toTime = datetime.datetime.now()
     duration = toTime - fromTime
