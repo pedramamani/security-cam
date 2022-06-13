@@ -44,7 +44,7 @@ class Camera():
 
 def main():
     camera = Camera()
-    writer = cv2.VideoWriter('video.avi', cv2.VideoWriter_fourcc(*'MJPG'), SETTING.frameRate, SETTING.croppedResolution)
+    writer = cv2.VideoWriter('video.avi', cv2.VideoWriter_fourcc(*'MJPG'), SETTING.frameRate, SETTING.cropResolution)
     fromTime = datetime.datetime.now()
     frameCount = 0
 
