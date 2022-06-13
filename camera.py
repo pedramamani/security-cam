@@ -53,11 +53,11 @@ def main():
         frame = camera.read()
         writer.write(frame)
         frameCount += 1
-        cv2.waitKey(1000 // SETTING.frameRate)
+        cv2.waitKey(CAPTURE_DELAY)
     
     toTime = datetime.datetime.now()
     duration = toTime - fromTime
-    print(f'Start and end times: {fromTime.time()} - {toTime.time()}')
+    print(f'Start time: {fromTime.time()}')
     print(f'Video duration: {duration.total_seconds()}')
     writer.release()
     cv2.destroyAllWindows()
