@@ -5,7 +5,7 @@ CAPTURE_SOURCE = 0
 
 class SETTING:
     resolution = (1920, 1080)
-    frameRate = 30
+    frameRate = 5
     duration = 10
 
 class OS:
