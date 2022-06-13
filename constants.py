@@ -6,6 +6,7 @@ CAPTURE_SOURCE = 0
 class SETTING:
     frameRate = 30
     duration = 5
+    iso = 140
     resolution = (640, 480)
     cropResolution = (300, 300)
     cropCenter = (356, 254)

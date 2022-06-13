@@ -18,7 +18,7 @@ class Camera():
             import picamera.array
             self.camera = picamera.PiCamera(resolution=SETTING.resolution, framerate=SETTING.frameRate, sensor_mode=7)
             self.camera.rotation = 180
-            self.camera.iso = 100
+            self.camera.iso = SETTING.iso
             time.sleep(2)  # wait for the automatic gain control to settle
             
             self.camera.shutter_speed = self.camera.exposure_speed
