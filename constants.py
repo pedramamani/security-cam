@@ -1,9 +1,13 @@
 CAPTURE_SOURCE = 0
-FRAME_WIDTH_RANGE = (400, 2000)
-FRAME_WIDTH_DELTA = 200
 
-# valid resolutions are:
-# USB camera: [(640, 480), (1280, 720), (1920, 1080)]
-# Pi camera: (640, 480)
-CAPTURE_RESOLUTION = (640, 480)
-FPS = 10
+
+# Windows resolutions: (640, 480), (1280, 720), (1920, 1080)
+# Windows frame rates: 10, 15, 30
+# Raspbian resolutions: ?
+# Raspbian frame rates: ?
+RESOLUTION = (1920, 1080)
+FRAME_RATE = 30
+
+class OS:
+    windows = 'Windows'
+    raspbian = 'Linux'
