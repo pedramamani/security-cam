@@ -18,7 +18,7 @@ class Camera():
             import picamera.array
             self.camera = picamera.PiCamera(sensor_mode=7)
             self.camera.resolution = SETTING.resolution
-            # self.camera.framerate = SETTING.frameRate
+            self.camera.framerate = SETTING.frameRate
             self.camera.rotation = 180
             self.capture = picamera.array.PiRGBArray(self.camera, size=SETTING.resolution)
         else:
@@ -44,12 +44,13 @@ class Camera():
 
 def main():
     camera = Camera()
-    writer = cv2.VideoWriter('video.avi', cv2.VideoWriter_fourcc(*'MJPG'), SETTING.frameRate, SETTING.resolution)
+    writer = cv2.VideoWriter('video.avi', cv2.VideoWriter_fourcc(*'MJPG'), SETTING.frameRate, SETTING.croppedResolution)
     fromTime = datetime.datetime.now()
     frameCount = 0
 
     while frameCount < SETTING.duration * SETTING.frameRate:
         frame = camera.read()
+        frame = frame[CROP_Y_PADDING: SETTING.resolution[1] - CROP_Y_PADDING, CROP_X_PADDING: SETTING.resolution[0] - CROP_X_PADDING]
         writer.write(frame)
         frameCount += 1
         if platform.system() == OS.windows:
