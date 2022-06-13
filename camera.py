@@ -53,7 +53,8 @@ def main():
         frame = camera.read()
         writer.write(frame)
         frameCount += 1
-        cv2.waitKey(CAPTURE_DELAY)
+        if platform.system() == OS.windows:
+            cv2.waitKey(CAPTURE_DELAY)
     
     toTime = datetime.datetime.now()
     duration = toTime - fromTime
