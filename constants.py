@@ -9,9 +9,8 @@ class SETTING:
     resolution = (640, 480)
     cropResolution = (300, 300)
     cropCenter = (356, 254)
-    cropPadding = ((resolution[0] - cropResolution[0]) // 2, (resolution[1] - cropResolution[1]) // 2)
-    cropStart = (cropCenter[0] - cropPadding[0], cropCenter[1] - cropPadding[1])
-    cropEnd = (cropCenter[0] + cropPadding[0], cropCenter[1] + cropPadding[1])
+    cropStart = (cropCenter[0] - cropResolution[0] // 2, cropCenter[1] - cropResolution[1] // 2)
+    cropEnd = (cropCenter[0] + cropResolution[0] // 2, cropCenter[1] + cropResolution[1] // 2)
 
 
 class OS:
