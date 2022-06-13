@@ -16,6 +16,7 @@ class Camera():
             self.camera.set(cv2.CAP_PROP_FPS, FRAME_RATE)
         elif platform.system() == OS.raspbian:
             import picamera
+            import picamera.array
             self.camera = picamera.PiCamera()
             self.camera.resolution = RESOLUTION
             self.camera.framerate = FRAME_RATE
@@ -30,7 +31,7 @@ class Camera():
             assert success, f'frame cannot be read from capture {CAPTURE_SOURCE}'
             return frame
         elif platform.system() == OS.raspbian:
-            output = self.camera.capture_continuous(self.capture, format='bgr', use_video_port=True)[0]
+            output = next(self.camera.capture_continuous(self.capture, format='bgr', use_video_port=True))
             self.capture.truncate(0)
             return output.array
     
