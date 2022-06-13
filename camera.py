@@ -17,7 +17,7 @@ class Camera():
             import picamera
             import picamera.array
             self.camera = picamera.PiCamera(sensor_mode=7)
-            # self.camera.resolution = SETTING.resolution
+            self.camera.resolution = SETTING.resolution
             # self.camera.framerate = SETTING.frameRate
             self.camera.rotation = 180
             self.capture = picamera.array.PiRGBArray(self.camera, size=SETTING.resolution)
