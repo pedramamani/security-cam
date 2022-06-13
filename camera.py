@@ -20,6 +20,7 @@ class Camera():
             self.camera = picamera.PiCamera()
             self.camera.resolution = SETTING.resolution
             self.camera.framerate = SETTING.frameRate
+            self.camera.rotation = 180
             self.capture = picamera.array.PiRGBArray(self.camera, size=SETTING.resolution)
         else:
             assert False, f'{platform.system()} operating system is not supported'
