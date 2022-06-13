@@ -23,7 +23,7 @@ class Camera():
             self.capture = picamera.array.PiRGBArray(self.camera, size=SETTING.resolution)
         else:
             assert False, f'{platform.system()} operating system is not supported'
-        time.sleep(0.2)  # allow camera to warm up
+        time.sleep(1)  # allow camera to warm up
     
     def read(self):
         if platform.system() == OS.windows:

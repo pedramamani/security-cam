@@ -5,8 +5,8 @@ CAPTURE_SOURCE = 0
 # Raspbian settings: 1920x1088@30, 720@60, 480p@60/90
 
 class SETTING:
-    resolution = (1920, 1080)
-    frameRate = 30
+    resolution = (1280, 720)
+    frameRate = 60
 
 class OS:
     windows = 'Windows'
