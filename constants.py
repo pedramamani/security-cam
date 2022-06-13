@@ -12,4 +12,4 @@ class OS:
     windows = 'Windows'
     raspbian = 'Linux'
 
-CAPTURE_DELAY = int(1000 / SETTING.frameRate * 0.3)  # multiplied by a correction factor
+CAPTURE_DELAY = int(1000 / SETTING.frameRate * 0.8)  # multiplied by a correction factor
