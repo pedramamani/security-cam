@@ -16,14 +16,19 @@ class Camera():
         elif platform.system() == OS.raspbian:
             import picamera
             import picamera.array
-            self.camera = picamera.PiCamera(sensor_mode=7)
-            self.camera.resolution = SETTING.resolution
-            self.camera.framerate = SETTING.frameRate
+            self.camera = picamera.PiCamera(resolution=SETTING.resolution, framerate=SETTING.frameRate, sensor_mode=7)
             self.camera.rotation = 180
+            self.camera.iso = 100
+            time.sleep(2)  # wait for the automatic gain control to settle
+            
+            self.camera.shutter_speed = self.camera.exposure_speed
+            self.camera.exposure_mode = 'off'
+            g = self.camera.awb_gains
+            self.camera.awb_mode = 'off'
+            self.camera.awb_gains = g
             self.capture = picamera.array.PiRGBArray(self.camera, size=SETTING.resolution)
         else:
             assert False, f'{platform.system()} operating system is not supported'
-        time.sleep(1)  # allow camera to warm up
     
     def read(self):
         if platform.system() == OS.windows:
