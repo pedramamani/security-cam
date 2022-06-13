@@ -49,7 +49,7 @@ def main():
     fromTime = datetime.datetime.now()
     frameCount = 0
 
-    while frameCount < 100:
+    while frameCount < SETTING.duration * SETTING.frameRate:
         frame = camera.read()
         writer.write(frame)
         frameCount += 1
