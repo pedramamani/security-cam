@@ -5,7 +5,6 @@ import datetime
 import time
 
 
-
 class Camera():
     def __init__(self):
         if platform.system() == OS.windows:

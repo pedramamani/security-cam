@@ -4,8 +4,8 @@ CAPTURE_SOURCE = 0
 # Raspbian settings: 1920x1088@30, 1280x720@60, more here https://picamera.readthedocs.io/en/release-1.13/fov.html
 
 class SETTING:
-    resolution = (1920, 1080)
-    frameRate = 5
+    resolution = (640, 480)
+    frameRate = 10
     duration = 10
 
 class OS:
