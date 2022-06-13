@@ -16,7 +16,7 @@ class Camera():
         elif platform.system() == OS.raspbian:
             import picamera
             import picamera.array
-            self.camera = picamera.PiCamera()
+            self.camera = picamera.PiCamera(sensor_mode=7)
             self.camera.resolution = SETTING.resolution
             self.camera.framerate = SETTING.frameRate
             self.camera.rotation = 180
