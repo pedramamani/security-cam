@@ -31,6 +31,7 @@ WEBCAM_CONFIG = CameraConfig(False, 0, 30, (640, 480))
 PICAM_CONFIG = CameraConfig(True, 7, 10, (640, 480), (300, 300), (356, 254))
 MAIN_CONFIG = WEBCAM_CONFIG if platform.system() == 'Windows' else PICAM_CONFIG
 
+WARMUP_DELAY = 2  # seconds to wait for camera to warm up and adjust
 DETECT_DELAY = 0.5  # seconds delay between detection instances
 CAPTURE_COUNT = 2 * MAIN_CONFIG.frameRate  # frames saved in a capture instance
 GNORM_THRESHOLD = 5
