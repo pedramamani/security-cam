@@ -1,9 +1,5 @@
 from constants import *
-import cv2
-import time
-import datetime
 import os
-import numpy as np
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
