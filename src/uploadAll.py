@@ -31,7 +31,7 @@ def uploadAll():
             service.files().create(body=metadata, media_body=media, fields='id').execute()
             del media  # to release the file handle so we can delete it
             os.remove(ASSETS_DIR / fileName)
-            print(f'uploaded file "{fileName}" and removed local copy\n')
+            print(f'uploaded file "{fileName}" and removed local copy')
 
 
 if __name__ == '__main__':
