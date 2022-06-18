@@ -40,13 +40,3 @@ DRIVE_FOLDER_ID = '1l3JiqF19aosyFD6ZShBCKGtWro6ItqJF'
 ASSETS_DIR = pathlib.Path(__file__).parent.resolve() / 'assets'
 TOKEN_FILE = ASSETS_DIR / 'token.json'
 CREDS_FILE = ASSETS_DIR / 'creds.json'
-
-
-def test():
-    for key, value in vars().copy().items():
-        if key.isupper():
-            print(f'{key} = {value}')
-
-
-if __name__ == '__main__':
-    test()

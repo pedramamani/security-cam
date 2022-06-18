@@ -33,7 +33,7 @@ class Camera:
             self.camera.release()
 
 
-def test():
+def testCamera():
     import time
     import matplotlib.pyplot as plt
 
@@ -58,4 +58,4 @@ def test():
 
 
 if __name__ == '__main__':
-    test()
+    testCamera()
