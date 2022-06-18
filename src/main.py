@@ -57,7 +57,6 @@ def setup():
 
 
 def main():
-    service = build('drive', 'v3', credentials=Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES))
     camera = Camera(MAIN_CONFIG)
     isCapturing = False
     gFrame = cv2.cvtColor(camera.read(), cv2.COLOR_BGR2GRAY)
@@ -85,12 +84,13 @@ def main():
             writer.release()
             print(f'ended capturing "{fileName}"')
 
+            service = build('drive', 'v3', credentials=Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES))
             metadata = {'name': fileName, 'parents': [DRIVE_FOLDER_ID]}
             media = MediaFileUpload(ASSETS_DIR / fileName)
             service.files().create(body=metadata, media_body=media, fields='id').execute()
             del media  # to release the file handle so we can delete it
             os.remove(ASSETS_DIR / fileName)
-            print(f'uploaded file "{fileName}" and removed local copy')
+            print(f'uploaded file "{fileName}" and removed local copy\n')
 
         else:
             time.sleep(DETECT_DELAY)
