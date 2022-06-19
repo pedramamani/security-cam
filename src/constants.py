@@ -42,5 +42,5 @@ GNORM_THRESHOLD = 8
 SCOPES = ['https://www.googleapis.com/auth/drive']
 DRIVE_FOLDER_ID = '1l3JiqF19aosyFD6ZShBCKGtWro6ItqJF'
 ASSETS_DIR = pathlib.Path(__file__).parent.resolve() / 'assets'
-TOKEN_FILE = ASSETS_DIR / 'token.json'
-CREDS_FILE = ASSETS_DIR / 'creds.json'
+TOKEN_FILE = ASSETS_DIR / 'securityCamToken.json'
+CREDS_FILE = ASSETS_DIR / 'securityCamCreds.json'
