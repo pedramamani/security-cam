@@ -1,7 +1,7 @@
 import dataclasses
-from importlib.resources import path
 import platform
 import pathlib
+import numpy as np
 
 
 @dataclasses.dataclass
@@ -14,6 +14,8 @@ class CameraConfig:
     cropCenter: tuple[int, int] = None
     cropStart: tuple[int, int] = dataclasses.field(init=False)
     cropEnd: tuple[int, int] = dataclasses.field(init=False)
+    captureCount: int = dataclasses.field(init=False)  # frames saved in a capture instance
+    gNormScale: float = dataclasses.field(init=False)
 
     def __post_init__(self):
         if self.cropResolution is None:
@@ -22,6 +24,8 @@ class CameraConfig:
             self.cropCenter = (self.resolution[0] // 2, self.resolution[1] // 2)
         self.cropStart = (self.cropCenter[0] - self.cropResolution[0] // 2, self.cropCenter[1] - self.cropResolution[1] // 2)
         self.cropEnd = (self.cropCenter[0] + self.cropResolution[0] // 2, self.cropCenter[1] + self.cropResolution[1] // 2)
+        self.captureCount = 2 * self.frameRate
+        self.gNormScale = 1 / np.sqrt(self.cropResolution[0] * self.cropResolution[1])
 
 
 # Webcam: 640x480@10/15/30, 1280x720@10/15/30, 1920x1080@10/15/30
@@ -29,12 +33,11 @@ class CameraConfig:
 
 WEBCAM_CONFIG = CameraConfig(False, 0, 30, (640, 480))
 PICAM_CONFIG = CameraConfig(True, 7, 10, (640, 480), (300, 300), (356, 254))
-MAIN_CONFIG = WEBCAM_CONFIG if platform.system() == 'Windows' else PICAM_CONFIG
+CAM_CONFIG = WEBCAM_CONFIG if platform.system() == 'Windows' else PICAM_CONFIG
 
 WARMUP_DELAY = 2  # seconds to wait for camera to warm up and adjust
-DETECT_DELAY = 0.5  # seconds delay between detection instances
-CAPTURE_COUNT = 2 * MAIN_CONFIG.frameRate  # frames saved in a capture instance
-GNORM_THRESHOLD = 5
+DETECT_DELAY = 0.25  # seconds delay between detection instances
+GNORM_THRESHOLD = 8
 
 SCOPES = ['https://www.googleapis.com/auth/drive']
 DRIVE_FOLDER_ID = '1l3JiqF19aosyFD6ZShBCKGtWro6ItqJF'
