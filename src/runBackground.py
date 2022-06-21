@@ -1,3 +1,4 @@
+from turtle import back
 from constants import *
 import camera
 import uploadAll
@@ -6,17 +7,16 @@ import time
 import datetime
 
 
-def main():
+def runMotion():
     feed = camera.Camera()
     isCapturing = False
-    frame = cv2.cvtColor(feed.read(), cv2.COLOR_BGR2GRAY)
+    background = cv2.imread(str(BACKGROUND_FILE), cv2.IMREAD_GRAYSCALE)
 
     while True:
-        framePrevious = frame
         frame = cv2.cvtColor(feed.read(), cv2.COLOR_BGR2GRAY)
-        diff = CAM_CONFIG.diffScale * cv2.norm(frame, framePrevious)
+        diff = CAM_CONFIG.diffScale * cv2.norm(frame, background)
 
-        if diff > DIFF_THRESHOLD and not isCapturing:
+        if diff > DIFF_THRESHOLD_BACKGROUND and not isCapturing:
             isCapturing = True
             fileName = datetime.datetime.now().strftime('%B %d, %H-%M-%S.avi')
             writer = cv2.VideoWriter(str(ASSETS_DIR / fileName), cv2.VideoWriter_fourcc(*'MJPG'), CAM_CONFIG.frameRate, CAM_CONFIG.cropResolution)
@@ -24,7 +24,7 @@ def main():
             for _ in range(CAM_CONFIG.captureCount):
                 writer.write(feed.read())
 
-        elif diff > DIFF_THRESHOLD and isCapturing:
+        elif diff > DIFF_THRESHOLD_BACKGROUND and isCapturing:
             for _ in range(CAM_CONFIG.captureCount):
                 writer.write(feed.read())
 
@@ -40,4 +40,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    runMotion()
