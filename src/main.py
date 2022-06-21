@@ -7,16 +7,16 @@ import datetime
 
 
 def main():
-    feed = camera.Camera(CAM_CONFIG)
+    feed = camera.Camera()
     isCapturing = False
-    gFrame = cv2.cvtColor(feed.read(), cv2.COLOR_BGR2GRAY)
+    frame = cv2.cvtColor(feed.read(), cv2.COLOR_BGR2GRAY)
 
     while True:
-        gFramePrev = gFrame
-        gFrame = cv2.cvtColor(feed.read(), cv2.COLOR_BGR2GRAY)
-        gNorm = CAM_CONFIG.gNormScale * cv2.norm(gFrame, gFramePrev)
+        framePrevious = frame
+        frame = cv2.cvtColor(feed.read(), cv2.COLOR_BGR2GRAY)
+        diff = CAM_CONFIG.diffScale * cv2.norm(frame, framePrevious)
 
-        if gNorm > GNORM_THRESHOLD and not isCapturing:
+        if diff > DIFF_THRESHOLD and not isCapturing:
             isCapturing = True
             fileName = datetime.datetime.now().strftime('%B %d, %H-%M-%S.avi')
             writer = cv2.VideoWriter(str(ASSETS_DIR / fileName), cv2.VideoWriter_fourcc(*'MJPG'), CAM_CONFIG.frameRate, CAM_CONFIG.cropResolution)
@@ -24,7 +24,7 @@ def main():
             for _ in range(CAM_CONFIG.captureCount):
                 writer.write(feed.read())
 
-        elif gNorm > GNORM_THRESHOLD and isCapturing:
+        elif diff > DIFF_THRESHOLD and isCapturing:
             for _ in range(CAM_CONFIG.captureCount):
                 writer.write(feed.read())
 

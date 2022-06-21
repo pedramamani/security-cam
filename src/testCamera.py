@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def testCamera():
-    feed = camera.Camera(CAM_CONFIG)
+    feed = camera.Camera()
     cv2.imshow('feed', feed.read())  # initialize camera and window so they don't affect frame capture timing
     captureTimes = [0]
     startTime = time.time()
