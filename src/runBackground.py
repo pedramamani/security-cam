@@ -14,6 +14,7 @@ def runMotion():
     while True:
         frame = cv2.cvtColor(feed.read(), cv2.COLOR_BGR2GRAY)
         diff = CAM_CONFIG.diffScale * cv2.norm(frame, background)
+        print(diff)
 
         if diff > DIFF_THRESHOLD_BACKGROUND and not isCapturing:
             isCapturing = True
