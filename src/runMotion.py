@@ -15,9 +15,9 @@ def runMotion():
         framePrevious = frame
         frame = cv2.cvtColor(feed.read(), cv2.COLOR_BGR2GRAY)
         diff = CAM_CONFIG.diffScale * cv2.norm(frame, framePrevious)
-        print(diff)
+        print(f'{diff:.2f}')
 
-        if diff > DIFF_THRESHOLD_MOTION and not isCapturing:
+        if diff > DIFF_THRESHOLD and not isCapturing:
             isCapturing = True
             fileName = datetime.datetime.now().strftime('%B %d, %H-%M-%S.avi')
             writer = cv2.VideoWriter(str(ASSETS_DIR / fileName), cv2.VideoWriter_fourcc(*'MJPG'), CAM_CONFIG.frameRate, CAM_CONFIG.cropResolution)
@@ -25,7 +25,7 @@ def runMotion():
             for _ in range(CAM_CONFIG.captureCount):
                 writer.write(feed.read())
 
-        elif diff > DIFF_THRESHOLD_MOTION and isCapturing:
+        elif diff > DIFF_THRESHOLD and isCapturing:
             for _ in range(CAM_CONFIG.captureCount):
                 writer.write(feed.read())
 

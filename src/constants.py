@@ -37,8 +37,7 @@ CAM_CONFIG = WEBCAM_CONFIG if platform.system() == 'Windows' else PICAM_CONFIG
 
 WARMUP_DELAY = 2  # seconds to wait for camera to warm up and adjust
 DETECT_DELAY = 0.25  # seconds delay between detection instances
-DIFF_THRESHOLD_MOTION = 8
-DIFF_THRESHOLD_BACKGROUND = 10
+DIFF_THRESHOLD = 6
 
 SCOPES = ['https://www.googleapis.com/auth/drive']
 DRIVE_FOLDER_ID = '1l3JiqF19aosyFD6ZShBCKGtWro6ItqJF'
