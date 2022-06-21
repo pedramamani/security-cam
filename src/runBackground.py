@@ -1,4 +1,3 @@
-from turtle import back
 from constants import *
 import camera
 import uploadAll
