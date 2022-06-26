@@ -1,3 +1,4 @@
+from cv2 import CAP_PROP_SETTINGS
 from constants import *
 import time
 import cv2
@@ -17,8 +18,8 @@ class Camera:
             self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, CAM_CONFIG.resolution[0])
             self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, CAM_CONFIG.resolution[1])
             self.camera.set(cv2.CAP_PROP_FPS, CAM_CONFIG.frameRate)
-            self.camera.set(cv2.CAP_PROP_EXPOSURE, 0)
-            self.camera.set(cv2.CAP_PROP_GAIN, 0)
+            print(self.camera.set(cv2.CAP_PROP_AUTO_EXPOSURE, 1))
+            print(self.camera.set(cv2.CAP_PROP_EXPOSURE, -3))
         time.sleep(WARMUP_DELAY)
     
     def read(self):
