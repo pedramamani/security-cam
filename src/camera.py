@@ -17,7 +17,7 @@ class Camera:
             self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, CAM_CONFIG.resolution[0])
             self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, CAM_CONFIG.resolution[1])
             self.camera.set(cv2.CAP_PROP_FPS, CAM_CONFIG.frameRate)
-        # time.sleep(WARMUP_DELAY)
+        time.sleep(WARMUP_DELAY)
     
     def read(self):
         if CAM_CONFIG.isPiCamera:
