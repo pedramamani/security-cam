@@ -35,7 +35,7 @@ class CameraConfig:
 # Picam: 1920x1088@30, 1280x720@60, ... => https://picamera.readthedocs.io/en/release-1.13/fov.html
 
 WEBCAM_CONFIG = CameraConfig(False, 0, 30, (640, 480), False)
-LOGICAM_CONFIG = CameraConfig(False, 0, 10, (960, 720), True, (120, 120), (504, 372))
+LOGICAM_CONFIG = CameraConfig(False, 0, 10, (960, 720), True, (120, 120), (514, 382))
 PICAM_CONFIG = CameraConfig(True, 7, 10, (640, 480), True, (300, 300), (356, 254))
 CAM_CONFIG = WEBCAM_CONFIG if platform.system() == 'Windows' else LOGICAM_CONFIG
 
