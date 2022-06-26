@@ -5,7 +5,6 @@ import dataclasses
 
 FRAME_WIDTH_RANGE = (400, 2000, 200)
 FRAME_RATE_RANGE = (10, 60, 10)
-SOURCE = 0
 
 
 @dataclasses.dataclass()
@@ -20,7 +19,7 @@ class CaptureConfig:
 
 def findCameraConfigs():
     validConfigs = []
-    capture = cv2.VideoCapture(SOURCE)
+    capture = cv2.VideoCapture(CAM_CONFIG.mode)
 
     for width in range(*FRAME_WIDTH_RANGE):
         capture.set(cv2.CAP_PROP_FRAME_WIDTH, width)
