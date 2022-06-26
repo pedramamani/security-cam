@@ -29,11 +29,13 @@ class CameraConfig:
 
 
 # Webcam: 640x480@10/15/30, 1280x720@10/15/30, 1920x1080@10/15/30
+# Logicam: 640x480@10/20/30, 800x600@10/20/30, 960x720@10/15, 1600x1200@5
 # Picam: 1920x1088@30, 1280x720@60, ... => https://picamera.readthedocs.io/en/release-1.13/fov.html
 
 WEBCAM_CONFIG = CameraConfig(False, 0, 30, (640, 480))
+LOGICAM_CONFIG = CameraConfig(False, 1, 10, (800, 600))
 PICAM_CONFIG = CameraConfig(True, 7, 10, (640, 480), (300, 300), (356, 254))
-CAM_CONFIG = WEBCAM_CONFIG if platform.system() == 'Windows' else PICAM_CONFIG
+CAM_CONFIG = LOGICAM_CONFIG if platform.system() == 'Windows' else LOGICAM_CONFIG
 
 WARMUP_DELAY = 2  # seconds to wait for camera to warm up and adjust
 DETECT_DELAY = 0.25  # seconds delay between detection instances
