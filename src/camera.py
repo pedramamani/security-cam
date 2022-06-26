@@ -15,6 +15,7 @@ class Camera:
             self.camera = cv2.VideoCapture(CAM_CONFIG.mode)
             assert self.camera.isOpened(), f'failed to open capture {CAM_CONFIG.mode}'
             self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, CAM_CONFIG.resolution[0])
+            self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, CAM_CONFIG.resolution[1])
             self.camera.set(cv2.CAP_PROP_FPS, CAM_CONFIG.frameRate)
             self.camera.set(cv2.CAP_PROP_EXPOSURE, 0.3)
             self.camera.set(cv2.CAP_PROP_GAIN, 0.2)
