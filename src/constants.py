@@ -11,7 +11,7 @@ class CameraConfig:
     mode: int
     frameRate: int
     resolution: tuple[int, int]
-    flipped: bool
+    rotated: bool
     cropResolution: tuple[int, int] = None
     cropCenter: tuple[int, int] = None
     cropStart: tuple[int, int] = dataclasses.field(init=False)
