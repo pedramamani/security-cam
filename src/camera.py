@@ -17,7 +17,7 @@ class Camera:
             self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, CAM_CONFIG.resolution[0])
             self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, CAM_CONFIG.resolution[1])
             self.camera.set(cv2.CAP_PROP_FPS, CAM_CONFIG.frameRate)
-        time.sleep(WARMUP_DELAY)
+        # time.sleep(WARMUP_DELAY)
     
     def read(self):
         if CAM_CONFIG.isPiCamera:
@@ -26,6 +26,8 @@ class Camera:
         else:
             success, frame = self.camera.read()
             assert success, f'frame cannot be read from capture {CAM_CONFIG.mode}'
+            if CAM_CONFIG.flipped:
+                frame = cv2.flip(frame, 0)
         frame = frame[CAM_CONFIG.cropStart[1]: CAM_CONFIG.cropEnd[1], CAM_CONFIG.cropStart[0]: CAM_CONFIG.cropEnd[0]]
         return frame
     

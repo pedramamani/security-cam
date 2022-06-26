@@ -1,4 +1,5 @@
 import dataclasses
+from math import fabs
 import platform
 import pathlib
 import numpy as np
@@ -10,6 +11,7 @@ class CameraConfig:
     mode: int
     frameRate: int
     resolution: tuple[int, int]
+    flipped: bool
     cropResolution: tuple[int, int] = None
     cropCenter: tuple[int, int] = None
     cropStart: tuple[int, int] = dataclasses.field(init=False)
@@ -32,10 +34,10 @@ class CameraConfig:
 # Logicam: 640x480@10/20/30, 800x600@10/20/30, 960x720@10/15, 1600x1200@5
 # Picam: 1920x1088@30, 1280x720@60, ... => https://picamera.readthedocs.io/en/release-1.13/fov.html
 
-WEBCAM_CONFIG = CameraConfig(False, 0, 30, (640, 480))
-LOGICAM_CONFIG = CameraConfig(False, 1, 10, (800, 600))
-PICAM_CONFIG = CameraConfig(True, 7, 10, (640, 480), (300, 300), (356, 254))
-CAM_CONFIG = LOGICAM_CONFIG if platform.system() == 'Windows' else LOGICAM_CONFIG
+WEBCAM_CONFIG = CameraConfig(False, 0, 30, (640, 480), False)
+LOGICAM_CONFIG = CameraConfig(False, 1, 10, (800, 600), True, (180, 180), (360, 360))
+PICAM_CONFIG = CameraConfig(True, 7, 10, (640, 480), True, (300, 300), (356, 254))
+CAM_CONFIG = WEBCAM_CONFIG if platform.system() == 'Windows' else LOGICAM_CONFIG
 
 WARMUP_DELAY = 2  # seconds to wait for camera to warm up and adjust
 DETECT_DELAY = 0.25  # seconds delay between detection instances
