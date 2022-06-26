@@ -1,5 +1,6 @@
 #!/bin/bash
 
 source '/home/pedramamani/code/security-cam/venv/bin/activate'
+python '/home/pedramamani/code/security-cam/src/uploadAll.py'
 # python '/home/pedramamani/code/security-cam/src/saveBackground.py'
 python '/home/pedramamani/code/security-cam/src/runBackground.py'
